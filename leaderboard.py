@@ -98,10 +98,6 @@ plt.yscale("log")
 
 
 # %%
-
-
-import matplotlib.pyplot as plt
-
 # Initialize lists to store the first minimum parameters and corresponding dates
 firstmindate = []
 firstminparams = []
