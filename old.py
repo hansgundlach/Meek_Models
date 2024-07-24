@@ -1,3 +1,12 @@
+
+
+#%%
+# #plot training and inference overhang 
+# plt.figure(figsize=(10, 5))
+# plt.plot(time, player1loss/total_loss(1000, time), label="Training Overhang")
+
+
+
 # %%
 # look at perplexity/model size over time
 
