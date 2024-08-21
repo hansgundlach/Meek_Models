@@ -2,6 +2,8 @@
 *.csv
 *.xlsx
 
+#ignore figures folder
+Figures/
 
 # Ignore node_modules directory (Node.js projects)
 node_modules/
