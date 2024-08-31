@@ -10,7 +10,7 @@ import numpy as np
 #%%
 
 # df contains data on from Futuretech on algorthmic improvements in language models
-df = pd.read_csv("Alg_bench.csv", parse_dates=["Publication date"])
+df = pd.read_csv("Datasets/Alg_bench.csv", parse_dates=["Publication date"])
 df["date"] = pd.to_datetime(df["Publication date"])
 # convert params to numeric
 df["Parameters"] = pd.to_numeric(df["Parameters"], errors='coerce')
