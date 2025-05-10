@@ -1,5 +1,4 @@
-# %%
-
+#%%
 # read in ModelBenchDAtes.csv
 import pandas as pd
 
@@ -18,9 +17,6 @@ df['Parameters'] = pd.to_numeric(df['Model size'].astype(str).apply(lambda x: fl
 df['Data'] = pd.to_numeric(df['Dataset size'].astype(str).apply(lambda x: float(x)))
 #%%
 print(df['Parameters'])
-
-
-
 #%%
 
 L0 = 1.69
@@ -35,31 +31,6 @@ df['Loss'] = loss(df['Parameters'], df['Data'])
 # %%
 #make a scatter of loss vs MMLU
 import matplotlib.pyplot as plt
-# plt.scatter(df['Loss'], df['MMLU'])
-# plt.xlabel('Loss')
-# plt.ylabel('MMLU')
-# plt.title('Loss vs MMLU')
-# plt.grid()
-# plt.show()
-
-# reverse the x axis so we can see the sigmoid
-# plt.scatter(df['Loss'], df['MMLU'])
-# plt.xlabel('Loss')
-# plt.ylabel('MMLU')
-# plt.title('Loss vs MMLU')
-# plt.grid()
-# plt.gca().invert_xaxis()
-# #fit a sigmoid to the data to reverse the x axis
-# from scipy.optimize import curve_fit
-# import numpy as np
-# def sigmoid(x, L ,x0, k, b):
-#     y = L / (1 + np.exp(-k*(x-x0)))+b
-#     return (y)
-# p0 = [max(df['MMLU']), np.median(df['Loss']),1,min(df['MMLU'])] # this is an mandatory initial guess
-# popt, pcov = curve_fit(sigmoid, df['Loss'], df['MMLU'], p0, method='dogbox', maxfev=10000)
-# print(popt)
-# plt.plot(df['Loss'], sigmoid(df['Loss'], *popt), 'r', label='fit')
-# plt.show()
 
 # %%
 import numpy as np
@@ -82,6 +53,8 @@ y_data = df['MMLU'].values
 def sigmoid(x, L, x0, k, b):
     return L / (1 + np.exp(-k * (x - x0))) + b
 
+
+
 initial_guess = [
     max(y_data),          # L
     np.median(x_data),    # x0
@@ -97,22 +70,29 @@ except RuntimeError as e:
     print("Error - curve_fit failed:", e)
 
 # Plotting
-plt.figure(figsize=(10, 6))
-plt.scatter(x_data, y_data, label='Data', color='blue')
+
 
 x_fit = np.linspace(min(x_data), max(x_data), 500)
 y_fit = sigmoid(x_fit, *popt)
 
-plt.plot(x_fit, y_fit, color='red', label='Fitted Sigmoid')
 
-plt.xlabel('Loss')
-plt.ylabel('MMLU')
-plt.title('Loss vs MMLU with Fitted Sigmoid')
-plt.grid(True)
+
+#%%
+plt.rcParams['font.family'] = 'DejaVu Sans'
+plt.figure(figsize=(10, 6))
+plt.scatter(x_data, y_data, label='Data', color='blue', alpha=0.5, s=100)
+plt.plot(x_fit, y_fit, color='orange', label='Fitted Sigmoid', linewidth=5, zorder=-10)
+
+plt.xlabel('Loss', fontsize=20)
+plt.ylabel('MMLU', fontsize=20)
+plt.xticks(fontsize=14)
+plt.yticks(fontsize=14)
+# plt.title('Loss vs MMLU with Fitted Sigmoid', fontsize=25, fontweight='bold')
+# plt.grid(True, alpha=0.9, linestyle='--')
 plt.gca().invert_xaxis()
-plt.legend()
-plt.savefig("Figures/Loss_vs_MMLU.png")
+plt.legend(fontsize=20)
+plt.savefig("Figures/Loss_vs_MMLU.png", dpi=300, bbox_inches='tight')
 plt.show()
 
+
 # %%
-\frac{L}{1 + e^{-k(x - x_0)}} + b
