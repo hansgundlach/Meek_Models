@@ -1,6 +1,7 @@
 #%%
 # read in ModelBenchDAtes.csv
 import pandas as pd
+print("hello")
 
 # Read the CSV file
 df = pd.read_csv("Datasets/Epoch_benchmarks.csv")
