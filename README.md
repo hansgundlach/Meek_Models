@@ -8,4 +8,4 @@ benchmark_notebook.ipynb contains code that makes the fit of loss to benchmark p
 
 meek_theory_neurips.ipynb contains the code necessary for most of the plots in the paper.
 
-![Figure Description](Figures/filename.png)
+![Figure Description](Figures/loss_diff_inference.png)
