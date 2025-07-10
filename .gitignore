@@ -1,5 +1,4 @@
 # ignore csv and excel files
-*.csv
 *.xlsx
 
 #ignore figures folder
