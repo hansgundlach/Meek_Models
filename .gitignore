@@ -3,7 +3,7 @@
 
 #ignore figures folder
 Figures/
-
+beta_material/
 # Ignore node_modules directory (Node.js projects)
 node_modules/
 
